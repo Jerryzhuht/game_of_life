@@ -1,6 +1,3 @@
-// This is the CPP file you will edit and turn in. (Remove this comment!)
-// hello world!!!!!!!!!!!!!!!!!!
-
 #include <iostream>
 #include "console.h"
 using namespace std;
