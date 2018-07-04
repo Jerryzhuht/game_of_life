@@ -112,17 +112,31 @@ string checkATQ(){
 Grid<string> growGrid(Grid<string> g){
     clearConsole();
     LifeGUI::resize(g.numRows(), g.numCols());
+    Grid<string> newG (g.numRows(),g.numCols());
     for (int r=0; r<g.numRows(); r++){
         for (int c=0; c<g.numCols(); c++){
-            cout << g[r][c] << "";
-            if(g[r][c] == "X" ||g[r][c] == "x"){
+            if (countNeighbours(r,c,g) <= 1) {
+                newG[r][c] = "-";
+            }
+            if (countNeighbours(r,c,g) == 2) {
+                newG[r][c] = newG[r][c];
+            }
+
+            if (countNeighbours(r,c,g) == 3) {
+                newG[r][c] = "X";
+            }
+            if (countNeighbours(r,c,g) > 3) {
+                newG[r][c] = "-";
+            }
+            cout << newG[r][c] <<"";
+            if(newG[r][c] == "X"){
                 LifeGUI::fillCell(r, c);
             }
         }
-        cout<<endl;
+        cout << endl;
         LifeGUI::repaint();
     }
-    return g;
+    return newG;
 }
 
 int checkFRM(){
@@ -131,8 +145,18 @@ int checkFRM(){
 }
 
 
-
-
+int countNeighbours(int r, int c, Grid<string> g){//r, c are the row and column number of the cell, num_row and num_col are the size the grid
+    int numAlive = 0;
+    int numRows = g.numRows();
+    int numCols = g.numCols();
+    for (int row = (r-1+numRows)%numRows; row < (r+2+numRows)%numRows; row ++ ) {
+        for (int column = (c-1+numCols)%numCols; column < (col+2)%numCols; column ++) {
+            if ((grid(row)(column) == "X"));
+                    numAlive += 1;
+        }
+    }
+    return numAlive;
+}
 
 
 
