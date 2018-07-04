@@ -120,7 +120,7 @@ Grid<string> growGrid(Grid<string> g){
                 newG[r][c] = "-";
             }
             if (countNeighbours(r,c,g) == 2) {
-                newG[r][c] = newG[r][c];
+                newG[r][c] = g[r][c];
             }
 
             if (countNeighbours(r,c,g) == 3) {
@@ -154,7 +154,7 @@ int countNeighbours(int r, int c, Grid<string> g){//r, c are the row and column 
     int numRows = g.numRows();
     int numCols = g.numCols();
     for (int row = (r-1+numRows)%numRows; row < (r+2+numRows)%numRows; row ++ ) {
-        for (int column = (c-1+numCols)%numCols; column < (column+2)%numCols; column ++) {
+        for (int column = (c-1+numCols)%numCols; column < (c+2+numCols)%numCols; column ++) {
             if (g[row][column] == "X"){
                     numAlive += 1;
             }
