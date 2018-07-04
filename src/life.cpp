@@ -146,17 +146,21 @@ int checkFRM(){
 }
 
 
-int countNeighbours(int r, int c, Grid<string> g){//r, c are the row and column number of the cell, num_row and num_col are the size the grid
+int countNeighbours(int r, int c, Grid<string> g){
     int numAlive = 0;
     if (g[r][c] == "X"){
         numAlive -= 1;
     }
     int numRows = g.numRows();
     int numCols = g.numCols();
-    for (int row = (r-1+numRows)%numRows; row < (r+2+numRows)%numRows; row ++ ) {
-        for (int column = (c-1+numCols)%numCols; column < (c+2+numRows)%numCols; column ++) {
-            if (g[row][column] == "X"){
-                    numAlive += 1;
+
+    Vector<int> row_vec {(r-1+numRows)%numRows, r , (r+1+numRows)%numRows};
+    Vector<int> col_vec {(c-1+numCols)%numCols, c , (c+1+numCols)%numCols};
+
+    for (int i=0 ; i<3; i++){
+        for (int j=0 ; j<3; j++){
+            if (g[row_vec[i]][col_vec[j]] == "X"){
+                numAlive += 1;
             }
         }
     }
