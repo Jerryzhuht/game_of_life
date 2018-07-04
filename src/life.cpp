@@ -47,7 +47,7 @@ int main() {
                 for (int i=0; i<frame;i++){
                     LifeGUI::clear();
                     gameboard = growGrid(gameboard);
-                    usleep(100);
+                    //usleep(100);
                 }
             }
             if (answer == "q"|| answer == "Q"){
@@ -84,7 +84,7 @@ Grid<string> loadfile(){
         getline(infile, line);
         for (int c=0; c<col_num; c++){
             gameboard[r][c] = line.at(c);
-            if(gameboard[r][c] == "X" ||gameboard[r][c] == "x"){
+            if(gameboard[r][c] == "X"){
                 LifeGUI::fillCell(r, c);
             }
             cout << gameboard[r][c] << "";
@@ -112,10 +112,12 @@ string checkATQ(){
 
 Grid<string> growGrid(Grid<string> g){
     clearConsole();
-    LifeGUI::resize(g.numRows(), g.numCols());
-    Grid<string> newG (g.numRows(),g.numCols());
-    for (int r=0; r<g.numRows(); r++){
-        for (int c=0; c<g.numCols(); c++){
+    int numRows = g.numRows();
+    int numCols = g.numCols();
+    //LifeGUI::resize(numRows, numCols);
+    Grid<string> newG (numRows,numCols);
+    for (int r=0; r<numRows; r++){
+        for (int c=0; c<numCols; c++){
             int numNeighbour =countNeighbours(r,c,g);
             if (numNeighbour <= 1) {
                 newG[r][c] = "-";
@@ -154,7 +156,6 @@ int countNeighbours(int r, int c, Grid<string> g){
     }
     int numRows = g.numRows();
     int numCols = g.numCols();
-
     Vector<int> row_vec {(r-1+numRows)%numRows, r , (r+1+numRows)%numRows};
     Vector<int> col_vec {(c-1+numCols)%numCols, c , (c+1+numCols)%numCols};
 
