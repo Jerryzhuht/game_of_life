@@ -116,17 +116,18 @@ Grid<string> growGrid(Grid<string> g){
     Grid<string> newG (g.numRows(),g.numCols());
     for (int r=0; r<g.numRows(); r++){
         for (int c=0; c<g.numCols(); c++){
-            if (countNeighbours(r,c,g) <= 1) {
+            int numNeighbour =countNeighbours(r,c,g);
+            if (numNeighbour <= 1) {
                 newG[r][c] = "-";
             }
-            if (countNeighbours(r,c,g) == 2) {
+            if (numNeighbour == 2) {
                 newG[r][c] = g[r][c];
             }
 
-            if (countNeighbours(r,c,g) == 3) {
+            if (numNeighbour == 3) {
                 newG[r][c] = "X";
             }
-            if (countNeighbours(r,c,g) > 3) {
+            if (numNeighbour > 3) {
                 newG[r][c] = "-";
             }
             cout << newG[r][c] <<"";
