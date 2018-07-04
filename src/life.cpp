@@ -17,6 +17,7 @@ string checkATQ();
 Grid<string> growGrid(Grid<string> g);
 int checkFRM();
 Grid<string> loadfile();
+int countNeighbours(int r, int c, Grid<string> g);
 
 
 int main() {
@@ -147,12 +148,16 @@ int checkFRM(){
 
 int countNeighbours(int r, int c, Grid<string> g){//r, c are the row and column number of the cell, num_row and num_col are the size the grid
     int numAlive = 0;
+    if (g[r][c] == "X"){
+        numAlive -= 1;
+    }
     int numRows = g.numRows();
     int numCols = g.numCols();
     for (int row = (r-1+numRows)%numRows; row < (r+2+numRows)%numRows; row ++ ) {
-        for (int column = (c-1+numCols)%numCols; column < (col+2)%numCols; column ++) {
-            if ((grid(row)(column) == "X"));
+        for (int column = (c-1+numCols)%numCols; column < (column+2)%numCols; column ++) {
+            if (g[row][column] == "X"){
                     numAlive += 1;
+            }
         }
     }
     return numAlive;
