@@ -9,6 +9,7 @@
 #include <vector.h>
 #include <algorithm>
 #include <unistd.h>
+#include "lifegui.h"
 
 using namespace std;
 
@@ -30,29 +31,31 @@ int main() {
     cout << endl;
 
     while(true){
+        LifeGUI::initialize();
         Grid<string> gameboard = loadfile();
-        //string answer = my_answer();
-        //cout << answer << endl;
 
         while (true){
             string answer = checkATQ();
             if (answer == "t" || answer == "T"){
+                LifeGUI::clear();
                 gameboard = growGrid(gameboard);
             }
 
             if (answer == "a"|| answer == "A"){
                 int frame = checkFRM();
                 for (int i=0; i<frame;i++){
+                    LifeGUI::clear();
                     gameboard = growGrid(gameboard);
                     usleep(100);
                 }
             }
-            if (answer == "q"){
+            if (answer == "q"|| answer == "Q"){
                break;
             }
         }
         if (!getYesOrNo("Load another file? (y/n)")){
             cout << "Have a nice Life!" << endl;
+            LifeGUI::shutdown();
             break;
         }
     }
@@ -72,17 +75,23 @@ Grid<string> loadfile(){
     getline(infile, col_num_str);
     int col_num = stringToInteger(col_num_str);
 
+    LifeGUI::resize(row_num, col_num);
+
     Grid<string> gameboard(row_num,col_num);
     string line;
     for (int r=0; r<row_num; r++){
         getline(infile, line);
         for (int c=0; c<col_num; c++){
             gameboard[r][c] = line.at(c);
+            if(gameboard[r][c] == "X" ||gameboard[r][c] == "x"){
+                LifeGUI::fillCell(r, c);
+            }
             cout << gameboard[r][c] << "";
         }
         cout << endl;
     }
     infile.close();
+    LifeGUI::repaint();
     return gameboard;
 }
 
@@ -102,12 +111,16 @@ string checkATQ(){
 
 Grid<string> growGrid(Grid<string> g){
     clearConsole();
+    LifeGUI::resize(g.numRows(), g.numCols());
     for (int r=0; r<g.numRows(); r++){
         for (int c=0; c<g.numCols(); c++){
             cout << g[r][c] << "";
+            if(g[r][c] == "X" ||g[r][c] == "x"){
+                LifeGUI::fillCell(r, c);
+            }
         }
         cout<<endl;
-
+        LifeGUI::repaint();
     }
     return g;
 }
