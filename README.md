@@ -18,5 +18,5 @@ The simulation starts with an initial pattern of cells on the grid and computes 
 ## Input Files:
 In each input file, the first two lines will contain integers r and c representing the number of rows and columns in the grid, respectively. The next lines of the file will contain the grid itself, a set of characters of size r x c with a line break (\n) after each row. Each grid character will be either a '-' (minus sign) for an empty dead cell, or an 'X' (uppercase X) for a living cell. The input file might contain additional lines of information after the grid lines, such as comments by its author or even junk/garbage data; any such content should be ignored by the program. We may assume that the world's size is at least 3x3.
 
-## Build Project:
-Use **Life.pro** to build.
+## Compile Project:
+Use **Life.pro** with [Qt](https://www.qt.io/download).
