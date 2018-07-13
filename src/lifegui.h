@@ -1,18 +1,3 @@
-/*
- * CS 106B/X, Game of Life
- * This instructor-provided file declares a GUI display needed for
- * the Game of Life assignment.
- * See lifegui.cpp for the implementation of each member.
- *
- * Based on an earlier version written by Julie Zelenski,
- * with later modifications by Cynthia Lee + TAs.
- *
- * NOTE: Your turned-in files should work with an unmodified version
- * of all instructor-provided code files.
- *
- * author: Marty Stepp
- * version: 2016/09/29
- */
 
 #ifndef _lifegui_h
 #define _lifegui_h

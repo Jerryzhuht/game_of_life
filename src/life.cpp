@@ -22,7 +22,7 @@ int countNeighbours(int r, int c, Grid<string> g);
 
 int main() {
     // Rules
-    cout << "Welcome to the CS 106B/X Game of Life!" << endl;
+    cout << "Welcome to the Game of Life!" << endl;
     cout << "This program simulates the lifecycle of a bacterial colony." << endl;
     cout << "Cells (X) live and die by the following rules:" << endl;
     cout << "* A cell with 1 or fewer neighbors dies." << endl;
